@@ -1,0 +1,39 @@
+{
+  "manifest_version": 3,
+  "name": "Social Feed Blocker: Helps you stop scrolling through social media",
+  "description": "Facebook, Twitter, Instagram, LinkedIn and more. Block your social media feeds and get back to work.",
+  "version": "0.0.1",
+  "permissions": ["storage"],
+  "icons": {
+    "16": "assets/icons/16x16.jpg",
+    "48": "assets/icons/48x48.jpg",
+    "128": "assets/icons/128x128.jpg"
+  },
+  "action": {
+    "default_popup": "popup/index.html",
+    "default_title": "Social Feed Blocker",
+    "default_icon": {
+      "16": "assets/icons/16x16.jpg",
+      "48": "assets/icons/48x48.jpg",
+      "128": "assets/icons/128x128.jpg"
+    }
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.facebook.com/*",
+        "*://*.twitter.com/*",
+        "*://*.instagram.com/*",
+        "*://*.linkedin.com/*",
+        "*://*.reddit.com/*",
+        "*://*.youtube.com/*"
+      ],
+      "run_at": "document_start",
+
+      "js": ["blocker.js"]
+    }
+  ]
+}
