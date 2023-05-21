@@ -36,7 +36,15 @@ const config = [
   },
   {
     domain: "youtube.com",
-    selectors: ["*"],
+    selectors: [
+      '#page-manager>:not(ytd-search, [page-subtype="channels"], [page-subtype="history"], [page-subtype="subscriptions"], [page-subtype="playlist"]) #contents', // home page feed
+      "#chips", // home page category chips
+      "#big-yoodle", // home page hero image
+      "#shorts-container", // shorts
+      "#comments", // comments
+      `a[title="Originals"]`, // originals
+      `a[title="YouTube Music"]`, // music
+    ],
     name: "youtube",
   },
   {
