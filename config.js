@@ -44,6 +44,7 @@ const config = [
       "#comments", // comments
       `a[title="Originals"]`, // originals
       `a[title="YouTube Music"]`, // music
+      "ytd-reel-shelf-renderer", // hide reels in search results
     ],
     name: "youtube",
   },
