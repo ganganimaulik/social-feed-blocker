@@ -1,4 +1,5 @@
 const fs = require("fs");
+
 // create config
 const config = [
   {
@@ -6,7 +7,9 @@ const config = [
     selectors: [
       ".x1hc1fzr.x1unhpq9.x6o7n8i", // home page feed
       'div[role="feed"]', // gruops feed
-      " .x9f619.x1n2onr6.x1ja2u2z.x2bj2ny.x1qpq9i9.xdney7k.xu5ydu1.xt3gfkd.xh8yej3.x6ikm8r.x10wlt62.xquyuld", //stories & reels
+      '[aria-label="Stories"]', //stories
+      'div[aria-label="Reels tray"]', //reels
+      ".x78zum5.x1q0g3np.xl56j7k.x1yztbdb.x1y1aw1k", // stories & reels
       "#watch_feed", // watch feed
       'div[aria-label="Videos on Facebook Watch"]', // watch feed
       "video", // video player of reels and watch
@@ -42,6 +45,5 @@ const config = [
     name: "linkedin",
   },
 ];
-
 // stringify config and write to config.txt file
 fs.writeFileSync("config.txt", JSON.stringify(config));
