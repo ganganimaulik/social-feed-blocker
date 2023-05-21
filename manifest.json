@@ -5,17 +5,17 @@
   "version": "0.0.1",
   "permissions": ["storage"],
   "icons": {
-    "16": "assets/icons/16x16.jpg",
-    "48": "assets/icons/48x48.jpg",
-    "128": "assets/icons/128x128.jpg"
+    "16": "assets/icons/png/16x16.png",
+    "48": "assets/icons/png/48x48.png",
+    "128": "assets/icons/png/128x128.png"
   },
   "action": {
     "default_popup": "popup/index.html",
     "default_title": "Social Feed Blocker",
     "default_icon": {
-      "16": "assets/icons/16x16.jpg",
-      "48": "assets/icons/48x48.jpg",
-      "128": "assets/icons/128x128.jpg"
+      "16": "assets/icons/png/16x16.png",
+      "48": "assets/icons/png/48x48.png",
+      "128": "assets/icons/png/128x128.png"
     }
   },
   "background": {
