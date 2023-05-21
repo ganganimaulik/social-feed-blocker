@@ -1,4 +1,6 @@
-[
+const fs = require("fs");
+// create config
+const config = [
   {
     domain: "facebook.com",
     selectors: [
@@ -40,3 +42,6 @@
     name: "linkedin",
   },
 ];
+
+// stringify config and write to config.txt file
+fs.writeFileSync("config.txt", JSON.stringify(config));
