@@ -17,10 +17,12 @@ function removeFeed(website) {
 }
 
 chrome.storage.local.get("config", ({ config }) => {
+  console.log(config);
+  console.log(document.location.hostname);
   // find config for the current website
   const website = config.find((website) =>
     website.domain.includes(
-      document.location.hostname.replace("www.", "").replace("m.", "")
+      document.location.hostname.replace(/^(www\.)/, "").replace(/^(m\.)/, "")
     )
   );
   console.log(website);

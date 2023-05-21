@@ -26,7 +26,7 @@ const config = [
   },
   {
     domain: "instagram.com",
-    selectors: ["*"],
+    selectors: [`main[role="main"]`],
     name: "instagram",
   },
   {
