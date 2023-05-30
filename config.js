@@ -58,7 +58,11 @@ const config = [
   },
   {
     domain: "linkedin.com",
-    selectors: ["*"],
+    selectors: [
+      ".scaffold-finite-scroll__content", // home page feed (probably removes all infinite scrolling widgets, not just home feed)
+      "#feed-news-module", // home "LinkedIn News"
+      ".artdeco-card.ember-view" // "LinkedIn News" white background box
+    ],
     name: "linkedin",
   },
 ];
