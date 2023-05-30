@@ -36,7 +36,10 @@ const config = [
   },
   {
     domain: "reddit.com",
-    selectors: ["*"],
+    selectors: [
+      ".rpBJOHq2PR60pnwJlUyP0", // removes all feeds
+      "._3Im6OD67aKo33nql4FpSp_", // right side "RECENT POSTS"
+    ],
     name: "reddit",
   },
   {
