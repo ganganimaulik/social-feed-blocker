@@ -21,7 +21,12 @@ const config = [
   },
   {
     domain: "twitter.com",
-    selectors: ["*"],
+    selectors: [
+      'div[aria-label="Timeline: Your Home Timeline"]', // home page feed
+      'div[aria-label="Timeline: Trending now"]', // home page trending ("What's happening" widget)
+      'a[aria-label="Search and explore"]', // hides explore button
+      'div[aria-label="Timeline: Explore"]', // explore tab hides all trending if accessed directly]
+    ],
     name: "twitter",
   },
   {
