@@ -39,6 +39,8 @@ const config = [
     selectors: [
       ".rpBJOHq2PR60pnwJlUyP0", // removes all feeds
       "._3Im6OD67aKo33nql4FpSp_", // right side "RECENT POSTS"
+      "#TrendingPostsContainer", // top "Trending today"
+      ".FohHGMokxXLkon1aacMoi", // post loading animation
     ],
     name: "reddit",
   },
@@ -61,7 +63,7 @@ const config = [
     selectors: [
       ".scaffold-finite-scroll__content", // home page feed (probably removes all infinite scrolling widgets, not just home feed)
       "#feed-news-module", // home "LinkedIn News"
-      ".artdeco-card.ember-view" // "LinkedIn News" white background box
+      `[aria-label="LinkedIn news module"]`, // "LinkedIn News" white background box
     ],
     name: "linkedin",
   },
