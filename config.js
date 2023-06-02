@@ -61,7 +61,7 @@ const config = [
   {
     domain: "linkedin.com",
     selectors: [
-      ".scaffold-finite-scroll__content", // home page feed (probably removes all infinite scrolling widgets, not just home feed)
+      ".scaffold-finite-scroll__content>:not(.nt-card-list) *", // home page feed (probably removes all infinite scrolling widgets, not just home feed)
       "#feed-news-module", // home "LinkedIn News"
       `[aria-label="LinkedIn news module"]`, // "LinkedIn News" white background box
     ],
