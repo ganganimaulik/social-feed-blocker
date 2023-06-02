@@ -7,8 +7,11 @@ function removeFeed(website) {
   }
   const styleEl = document.createElement("style");
   styleEl.id = "feed-blocker";
-
-  styleEl.innerHTML = `${website.selectors} { display: none !important; }`;
+  if (website.name == "twitter" || website.name == "linkedin") {
+    styleEl.innerHTML = `${website.selectors} { visibility:hidden!important; }`;
+  } else {
+    styleEl.innerHTML = `${website.selectors} { display: none !important; }`;
+  }
 
   document.head.appendChild(styleEl);
 }
