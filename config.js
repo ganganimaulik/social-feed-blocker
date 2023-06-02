@@ -21,7 +21,13 @@ const config = [
   },
   {
     domain: "twitter.com",
-    selectors: ["*"],
+    selectors: [
+      'div[aria-label="Timeline: Your Home Timeline"]', // home page feed
+      'div[aria-label="Timeline: Trending now"]', // home page trending ("What's happening" widget)
+      'a[aria-label="Search and explore"]', // hides explore button
+      'div[aria-label="Timeline: Explore"]', // explore tab hides all trending if accessed directly]
+      'aside[aria-label="Who to follow"]', // who to follow widget
+    ],
     name: "twitter",
   },
   {
@@ -31,7 +37,12 @@ const config = [
   },
   {
     domain: "reddit.com",
-    selectors: ["*"],
+    selectors: [
+      ".rpBJOHq2PR60pnwJlUyP0", // removes all feeds
+      "div[data-testid='frontpage-sidebar']", // sidebar
+      "#TrendingPostsContainer", // top "Trending today"
+      ".FohHGMokxXLkon1aacMoi", // post loading animation
+    ],
     name: "reddit",
   },
   {
@@ -50,7 +61,11 @@ const config = [
   },
   {
     domain: "linkedin.com",
-    selectors: ["*"],
+    selectors: [
+      ".scaffold-finite-scroll__content>:not(.nt-card-list) *", // home page feed (probably removes all infinite scrolling widgets, not just home feed)
+      "#feed-news-module", // home "LinkedIn News"
+      `[aria-label="LinkedIn news module"]`, // "LinkedIn News" white background box
+    ],
     name: "linkedin",
   },
 ];
