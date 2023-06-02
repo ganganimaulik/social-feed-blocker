@@ -39,7 +39,7 @@ const config = [
     domain: "reddit.com",
     selectors: [
       ".rpBJOHq2PR60pnwJlUyP0", // removes all feeds
-      "._3Im6OD67aKo33nql4FpSp_", // right side "RECENT POSTS"
+      "div[data-testid='frontpage-sidebar']", // sidebar
       "#TrendingPostsContainer", // top "Trending today"
       ".FohHGMokxXLkon1aacMoi", // post loading animation
     ],
