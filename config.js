@@ -45,7 +45,7 @@ const config = [
         selector: 'a[aria-label="Search and explore"]',
       },
       {
-        name: "explore tab hides all trending if accessed directly]",
+        name: "explore tab hides all trending if accessed directly",
         selector: 'div[aria-label="Timeline: Explore"]',
       },
       {
