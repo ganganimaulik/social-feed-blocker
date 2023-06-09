@@ -3,70 +3,107 @@ const fs = require("fs");
 // create config
 const config = [
   {
+    name: "facebook",
     domain: "facebook.com",
     selectors: [
-      ".x1hc1fzr.x1unhpq9.x6o7n8i", // home page feed
-      'div[role="feed"]', // gruops feed
-      '[aria-label="Stories"]', //stories
-      'div[aria-label="Reels tray"]', //reels
-      ".x78zum5.x1q0g3np.xl56j7k.x1yztbdb.x1y1aw1k", // stories & reels
-      "#watch_feed", // watch feed
-      'div[aria-label="Videos on Facebook Watch"]', // watch feed
-      "video", // video player of reels and watch
-      'div[aria-label="Collection of Marketplace items"]', // marketplace
-      'div[aria-label="Preview of a group"]', // groups
-      'div[aria-label="Notifications"]', // notifications
+      { name: "home page feed", selector: ".x1hc1fzr.x1unhpq9.x6o7n8i" },
+      { name: "gruops feed", selector: 'div[role="feed"]' },
+      { name: "stories", selector: '[aria-label="Stories"]' },
+      { name: "reels", selector: 'div[aria-label="Reels tray"]' },
+      {
+        name: "stories & reels",
+        selector: ".x78zum5.x1q0g3np.xl56j7k.x1yztbdb.x1y1aw1k",
+      },
+      { name: "watch feed", selector: "#watch_feed" },
+      {
+        name: "watch feed",
+        selector: 'div[aria-label="Videos on Facebook Watch"]',
+      },
+      { name: "video player of reels and watch", selector: "video" },
+      {
+        name: "marketplace",
+        selector: 'div[aria-label="Collection of Marketplace items"]',
+      },
+      { name: "groups", selector: 'div[aria-label="Preview of a group"]' },
+      { name: "notifications", selector: 'div[aria-label="Notifications"]' },
     ],
-    name: "facebook",
   },
   {
+    name: "twitter",
     domain: "twitter.com",
     selectors: [
-      'div[aria-label="Timeline: Your Home Timeline"]', // home page feed
-      'div[aria-label="Timeline: Trending now"]', // home page trending ("What's happening" widget)
-      'a[aria-label="Search and explore"]', // hides explore button
-      'div[aria-label="Timeline: Explore"]', // explore tab hides all trending if accessed directly]
-      'aside[aria-label="Who to follow"]', // who to follow widget
+      {
+        name: "home page feed",
+        selector: 'div[aria-label="Timeline: Your Home Timeline"]',
+      },
+      {
+        name: 'home page trending ("What\'s happening"widget)',
+        selector: 'div[aria-label="Timeline: Trending now"]',
+      },
+      {
+        name: "hides explore button",
+        selector: 'a[aria-label="Search and explore"]',
+      },
+      {
+        name: "explore tab hides all trending if accessed directly]",
+        selector: 'div[aria-label="Timeline: Explore"]',
+      },
+      {
+        name: "who to follow widget",
+        selector: 'aside[aria-label="Who to follow"]',
+      },
     ],
-    name: "twitter",
   },
   {
-    domain: "instagram.com",
-    selectors: [`main[role="main"]`],
     name: "instagram",
+    domain: "instagram.com",
+    selectors: [{ name: "All", selector: `main[role="main"]` }],
   },
   {
+    name: "reddit",
     domain: "reddit.com",
     selectors: [
-      ".rpBJOHq2PR60pnwJlUyP0", // removes all feeds
-      "div[data-testid='frontpage-sidebar']", // sidebar
-      "#TrendingPostsContainer", // top "Trending today"
-      ".FohHGMokxXLkon1aacMoi", // post loading animation
+      { name: "removes all feeds", selector: ".rpBJOHq2PR60pnwJlUyP0" },
+      { name: "sidebar", selector: "div[data-testid='frontpage-sidebar']" },
+      { name: 'top "Trending today"', selector: "#TrendingPostsContainer" },
+      { name: "post loading animation", selector: ".FohHGMokxXLkon1aacMoi" },
     ],
-    name: "reddit",
   },
   {
+    name: "youtube",
     domain: "youtube.com",
     selectors: [
-      '#page-manager>:not(ytd-search, [page-subtype="channels"], [page-subtype="history"], [page-subtype="subscriptions"], [page-subtype="playlist"]) #contents', // home page feed
-      "#chips", // home page category chips
-      "#big-yoodle", // home page hero image
-      "#shorts-container", // shorts
-      "#comments", // comments
-      `a[title="Originals"]`, // originals
-      `a[title="YouTube Music"]`, // music
-      "ytd-reel-shelf-renderer", // hide reels in search results
+      {
+        name: "home page feed",
+        selector:
+          '#page-manager>:not(ytd-search, [page-subtype="channels"], [page-subtype="history"], [page-subtype="subscriptions"], [page-subtype="playlist"]) #contents',
+      },
+      { name: "home page category chips", selector: "#chips" },
+      { name: "home page hero image", selector: "#big-yoodle" },
+      { name: "shorts", selector: "#shorts-container" },
+      { name: "comments", selector: "#comments" },
+      { name: "originals", selector: `a[title="Originals"]` },
+      { name: "music", selector: `a[title="YouTube Music"]` },
+      {
+        name: "hide reels in search results",
+        selector: "ytd-reel-shelf-renderer",
+      },
     ],
-    name: "youtube",
   },
   {
+    name: "linkedin",
     domain: "linkedin.com",
     selectors: [
-      ".scaffold-finite-scroll__content>:not(.nt-card-list) *", // home page feed (probably removes all infinite scrolling widgets, not just home feed)
-      "#feed-news-module", // home "LinkedIn News"
-      `[aria-label="LinkedIn news module"]`, // "LinkedIn News" white background box
+      {
+        name: "home page feed",
+        selector: ".scaffold-finite-scroll__content>:not(.nt-card-list) *",
+      },
+      { name: 'home "LinkedIn News"', selector: "#feed-news-module" },
+      {
+        name: '"LinkedIn News"white background box',
+        selector: `[aria-label="LinkedIn news module"]`,
+      },
     ],
-    name: "linkedin",
   },
 ];
 // stringify config and write to config.txt file

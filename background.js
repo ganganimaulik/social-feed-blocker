@@ -13,7 +13,9 @@ function initConfig() {
   chrome.storage.local.get((store) => {
     // Get the latest config from the server.
     fetch(
-      devLocalConfigTxt ? `./config.txt` : `https://raw.githubusercontent.com/ganganimaulik/social-feed-blocker/master/config.txt`
+      devLocalConfigTxt
+        ? `./config.txt`
+        : `https://raw.githubusercontent.com/ganganimaulik/social-feed-blocker/master/config.txt`
     )
       .then((res) => res.text())
       .then((res) => {
