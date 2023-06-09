@@ -7,14 +7,16 @@ function removeFeed(website) {
   }
   const styleEl = document.createElement("style");
   styleEl.id = "feed-blocker";
-  if (website.name == "twitter" || website.name == "linkedin") {
-    styleEl.innerHTML = `${website.selectors.map(
-      (s) => s.selector
-    )} { visibility:hidden!important; }`;
+  const selectors = website.selectors
+    .filter((s) => s.selected)
+    .map((s) => s.selector);
+
+  if (!selectors.length) return;
+  
+  if (["linkedin", "twitter"].includes(website.name)) {
+    styleEl.innerHTML = `${selectors} { visibility:hidden!important; }`;
   } else {
-    styleEl.innerHTML = `${website.selectors.map(
-      (s) => s.selector
-    )} { display: none !important; }`;
+    styleEl.innerHTML = `${selectors} { display: none !important; }`;
   }
 
   document.head.appendChild(styleEl);
