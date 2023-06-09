@@ -16,11 +16,13 @@ chrome.storage.local.get((store) => {
     const configCheckbox = document.createElement("input");
     configCheckbox.type = "checkbox";
     configCheckbox.value = item.name;
+    configCheckbox.id = `config-checkbox-${item.name}`; // Set the "id" attribute
     configCheckbox.addEventListener("change", handleConfigChange);
 
     // Create a label for the config element
     const configLabel = document.createElement("label");
     configLabel.textContent = item.name;
+    configLabel.setAttribute("for", `config-checkbox-${item.name}`); // Set the "for" attribute
 
     // Append the checkbox and label to the list item
     configItem.appendChild(configCheckbox);
@@ -37,9 +39,14 @@ chrome.storage.local.get((store) => {
       selectorCheckbox.type = "checkbox";
       selectorCheckbox.value = selector.selector;
       selectorCheckbox.addEventListener("change", handleSelectorChange);
+      selectorCheckbox.id = `selector-checkbox-${selector.selector}`; // Set the "id" attribute
 
       const selectorLabel = document.createElement("label");
       selectorLabel.textContent = selector.name;
+      selectorLabel.setAttribute(
+        "for",
+        `selector-checkbox-${selector.selector}`
+      ); // Set the "for" attribute
 
       selectorItem.appendChild(selectorCheckbox);
       selectorItem.appendChild(selectorLabel);
