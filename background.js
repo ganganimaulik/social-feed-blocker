@@ -37,7 +37,10 @@ function initConfig() {
                     selected: storeSelector.selected,
                   };
                 }
-                return s;
+                return {
+                  ...s,
+                  selected: true,
+                };
               });
               return {
                 ...c,
