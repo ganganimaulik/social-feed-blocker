@@ -20,7 +20,34 @@ function initConfig() {
       .then((res) => res.text())
       .then((res) => {
         console.log(res);
-        const config = JSON.parse(res);
+        let config = JSON.parse(res);
+
+        // match store.config with config and update new config selected values
+        if (store.config) {
+          config = config.map((c) => {
+            const storeConfig = store.config.find((s) => s.name == c.name);
+            if (storeConfig) {
+              const selectors = c.selectors.map((s) => {
+                const storeSelector = storeConfig.selectors.find(
+                  (ss) => ss.name == s.name
+                );
+                if (storeSelector) {
+                  return {
+                    ...s,
+                    selected: storeSelector.selected,
+                  };
+                }
+                return s;
+              });
+              return {
+                ...c,
+                selectors,
+              };
+            }
+            return c;
+          });
+        }
+
         // Store the latest config in the local storage.
         chrome.storage.local.set({ config }, () => {});
       })

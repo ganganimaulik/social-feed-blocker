@@ -16,6 +16,7 @@ chrome.storage.local.get((store) => {
     const configCheckbox = document.createElement("input");
     configCheckbox.type = "checkbox";
     configCheckbox.value = item.name;
+    configCheckbox.checked = item.selected;
     configCheckbox.id = `config-checkbox-${item.name}`; // Set the "id" attribute
     configCheckbox.addEventListener("change", handleConfigChange);
 
@@ -32,21 +33,19 @@ chrome.storage.local.get((store) => {
     const selectorList = document.createElement("ul");
 
     // Create list items for each selector within the config element
-    item.selectors.forEach((selector) => {
+    item.selectors.forEach((selector, i) => {
       const selectorItem = document.createElement("li");
-
+      const value = item.name + "_" + i;
       const selectorCheckbox = document.createElement("input");
       selectorCheckbox.type = "checkbox";
-      selectorCheckbox.value = selector.selector;
+      selectorCheckbox.value = value;
       selectorCheckbox.addEventListener("change", handleSelectorChange);
-      selectorCheckbox.id = `selector-checkbox-${selector.selector}`; // Set the "id" attribute
+      selectorCheckbox.checked = selector.selected;
+      selectorCheckbox.id = `selector-checkbox-${value}`; // Set the "id" attribute
 
       const selectorLabel = document.createElement("label");
       selectorLabel.textContent = selector.name;
-      selectorLabel.setAttribute(
-        "for",
-        `selector-checkbox-${selector.selector}`
-      ); // Set the "for" attribute
+      selectorLabel.setAttribute("for", `selector-checkbox-${value}`); // Set the "for" attribute
 
       selectorItem.appendChild(selectorCheckbox);
       selectorItem.appendChild(selectorLabel);
@@ -65,30 +64,63 @@ chrome.storage.local.get((store) => {
   // Handle config checkbox change event
   function handleConfigChange(event) {
     const configName = event.target.value;
+
     const selectors = event.target.parentNode.getElementsByTagName("input");
 
     // Check or uncheck all the selectors within the config
     for (let i = 0; i < selectors.length; i++) {
       selectors[i].checked = event.target.checked;
     }
+
+    // Save the config to chrome extension storage
+    chrome.storage.local.get((store) => {
+      const config = store.config;
+      const configIndex = config.findIndex((item) => item.name === configName);
+      config[configIndex].selected = event.target.checked;
+      config[configIndex].selectors = config[configIndex].selectors.map(
+        (selector) => {
+          selector.selected = event.target.checked;
+          return selector;
+        }
+      );
+      chrome.storage.local.set({ config });
+    });
   }
 
   // Handle selector checkbox change event
   function handleSelectorChange(event) {
-    const configCheckbox =
-      event.target.parentNode.parentNode.firstChild.firstChild;
-    const selectors = configCheckbox.parentNode.getElementsByTagName("input");
-    let allChecked = true;
+    const configName = event.target.value;
+    let socialNetworkName = configName.split("_")[0];
+    let selectorIndex = configName.split("_")?.[1];
+    console.log(configName, socialNetworkName, selectorIndex);
 
-    // Check if all the selectors within the config are checked
-    for (let i = 0; i < selectors.length; i++) {
-      if (!selectors[i].checked) {
-        allChecked = false;
+    const configCheckbox = document.querySelector(
+      `#config-checkbox-${socialNetworkName}`
+    );
+    const selectors = configCheckbox.parentNode.querySelectorAll("ul input");
+    let oneChecked = false;
+    console.log(selectors);
+    // Check if one selector within the config is checked
+    for (let i = 1; i < selectors.length; i++) {
+      if (selectors[i].checked) {
+        oneChecked = true;
         break;
       }
     }
 
     // Check or uncheck the config checkbox based on selectors' state
-    configCheckbox.checked = allChecked;
+    configCheckbox.checked = oneChecked;
+
+    // Save the config to chrome extension storage
+    chrome.storage.local.get((store) => {
+      const config = store.config;
+      const configIndex = config.findIndex(
+        (item) => item.name === socialNetworkName
+      );
+      config[configIndex].selected = oneChecked;
+      config[configIndex].selectors[selectorIndex].selected =
+        event.target.checked;
+      chrome.storage.local.set({ config });
+    });
   }
 });

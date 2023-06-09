@@ -7,7 +7,7 @@ const config = [
     domain: "facebook.com",
     selectors: [
       { name: "home page feed", selector: ".x1hc1fzr.x1unhpq9.x6o7n8i" },
-      { name: "gruops feed", selector: 'div[role="feed"]' },
+      { name: "groups feed", selector: 'div[role="feed"]' },
       { name: "stories", selector: '[aria-label="Stories"]' },
       { name: "reels", selector: 'div[aria-label="Reels tray"]' },
       {
@@ -16,12 +16,12 @@ const config = [
       },
       { name: "watch feed", selector: "#watch_feed" },
       {
-        name: "watch feed",
+        name: "watch feed 2",
         selector: 'div[aria-label="Videos on Facebook Watch"]',
       },
       { name: "video player of reels and watch", selector: "video" },
       {
-        name: "marketplace",
+        name: "Marketplace",
         selector: 'div[aria-label="Collection of Marketplace items"]',
       },
       { name: "groups", selector: 'div[aria-label="Preview of a group"]' },
@@ -57,7 +57,7 @@ const config = [
   {
     name: "instagram",
     domain: "instagram.com",
-    selectors: [{ name: "All", selector: `main[role="main"]` }],
+    selectors: [{ name: "All Feeds", selector: `main[role="main"]` }],
   },
   {
     name: "reddit",
