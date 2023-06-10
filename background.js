@@ -7,7 +7,7 @@ chrome.runtime.onInstalled.addListener(function (details) {
   initConfig();
 });
 
-const devLocalConfigTxt = false;
+const devLocalConfigTxt = true;
 
 function initConfig() {
   chrome.storage.local.get((store) => {
@@ -19,13 +19,13 @@ function initConfig() {
     )
       .then((res) => res.text())
       .then((res) => {
-        console.log(res);
         let config = JSON.parse(res);
 
+        console.log("store.config", store.config);
         // match store.config with config and update new config selected values
         if (store.config) {
           config = config.map((c) => {
-            const storeConfig = store.config.find((s) => s.name == c.name);
+            const storeConfig = store.config.find((sc) => sc.name == c.name);
             if (storeConfig) {
               const selectors = c.selectors.map((s) => {
                 const storeSelector = storeConfig.selectors.find(
@@ -42,15 +42,24 @@ function initConfig() {
                   selected: true,
                 };
               });
+              console.log("selectors", selectors);
+              c.selected = storeConfig.selected;
               return {
                 ...c,
                 selectors,
               };
             }
+            c.selected = true;
+            c.selectors = c.selectors.map((s) => {
+              return {
+                ...s,
+                selected: true,
+              };
+            });
             return c;
           });
         }
-
+        console.log("config", config);
         // Store the latest config in the local storage.
         chrome.storage.local.set({ config }, () => {});
       })
