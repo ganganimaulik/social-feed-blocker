@@ -32,11 +32,7 @@ chrome.storage.local.get("config", ({ config }) => {
     )
   );
   if (website) {
-    // Set isBlockingEnabled to true if not present in the configuration
-    if (website.isBlockingEnabled === undefined) {
-      website.isBlockingEnabled = true;
-    }
-
+  
     // Check if the stored timestamp is in the past or null
     chrome.storage.local.get("pausedTill", ({ pausedTill }) => {
       const currentTimestamp = new Date().getTime();
