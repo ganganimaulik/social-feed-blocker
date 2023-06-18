@@ -32,12 +32,11 @@ chrome.storage.local.get("config", ({ config }) => {
     )
   );
   if (website) {
-  
     // Check if the stored timestamp is in the past or null
     chrome.storage.local.get("pausedTill", ({ pausedTill }) => {
       const currentTimestamp = new Date().getTime();
 
-      if (pausedTill === null || pausedTill <= currentTimestamp) {
+      if (!pausedTill || pausedTill <= currentTimestamp) {
         // Social feed blocker is active
         removeFeed(website);
       } else {
