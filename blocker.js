@@ -1,3 +1,4 @@
+// remove the feed for the specified website
 function removeFeed(website) {
   if (!document.querySelector("body"))
     return setTimeout(() => removeFeed(website), 1000);
@@ -12,7 +13,7 @@ function removeFeed(website) {
     .map((s) => s.selector);
 
   if (!selectors.length) return;
-  
+
   if (["linkedin", "twitter"].includes(website.name)) {
     styleEl.innerHTML = `${selectors} { visibility:hidden!important; }`;
   } else {
@@ -22,18 +23,30 @@ function removeFeed(website) {
   document.head.appendChild(styleEl);
 }
 
+// get the website and remove feed
 chrome.storage.local.get("config", ({ config }) => {
-  console.log(config);
-
   // find config for the current website
   const website = config.find((website) =>
     website.domain.includes(
       document.location.hostname.replace(/^(www\.)/, "").replace(/^(m\.)/, "")
     )
   );
-  console.log(website);
   if (website) {
-    //todo: add a check to see if the website blocking is enabled
-    removeFeed(website);
+    // Set isBlockingEnabled to true if not present in the configuration
+    if (website.isBlockingEnabled === undefined) {
+      website.isBlockingEnabled = true;
+    }
+
+    // Check if the stored timestamp is in the past or null
+    chrome.storage.local.get("pausedTill", ({ pausedTill }) => {
+      const currentTimestamp = new Date().getTime();
+
+      if (pausedTill === null || pausedTill <= currentTimestamp) {
+        // Social feed blocker is active
+        removeFeed(website);
+      } else {
+        console.log("Social feed blocker is paused");
+      }
+    });
   }
 });
