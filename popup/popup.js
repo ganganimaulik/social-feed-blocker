@@ -148,9 +148,10 @@ function displayTimeRemaining(pausedTill) {
 
   if (remainingTime > 0) {
     timeRemainingElement.textContent = `${minutes}m ${seconds}s remaining`;
-  } else {
-    timeRemainingElement.textContent = "Pause time has expired";
-  }
+  } 
+  // else {
+  //   timeRemainingElement.textContent = "Pause time has expired";
+  // }
 }
 
 //this method gets called only when page is reloaded
