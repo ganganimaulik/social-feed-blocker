@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "Social Feeds Blocker",
-  "description": "YouTube, Facebook, Twitter, Instagram, LinkedIn and Reddit. Block your social media feeds and get back to work.",
-  "version": "0.0.4",
+  "description": "Block your social media feeds and get back to work.",
+  "version": "0.0.5",
   "permissions": ["storage"],
   "icons": {
     "16": "assets/icons/png/16x16.png",
