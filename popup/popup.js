@@ -135,6 +135,8 @@ function handlePauseClick(pauseTime) {
   displayTimeRemaining(pausedTill);
 }
 
+const timeRemainingSection = document.getElementById('time-remaining-section')
+
 // Function to display the time remaining
 function displayTimeRemaining(pausedTill) {
   const currentTime = new Date().getTime();
@@ -147,8 +149,13 @@ function displayTimeRemaining(pausedTill) {
   const timeRemainingElement = document.getElementById("time-remaining");
 
   if (remainingTime > 0) {
+    timeRemainingSection.style.removeProperty('display')
+    // timeRemainingSection.style.flexDirection = 'column'
     timeRemainingElement.textContent = `${minutes}m ${seconds}s remaining`;
   } 
+  else {
+    timeRemainingSection.style.display = 'none'
+  }
   // else {
   //   timeRemainingElement.textContent = "Pause time has expired";
   // }
