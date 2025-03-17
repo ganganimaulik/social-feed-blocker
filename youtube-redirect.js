@@ -36,7 +36,7 @@ function handleHomeButtonClicks() {
     // Target the home button elements
     document.body.addEventListener('click', function (e) {
         // Check if the clicked element or its parent is the home button
-        const clickedElement = e.target.closest('a[title="Home"]');
+        const clickedElement = e.target.closest('a[href="/"]');
         if (clickedElement) {
             e.preventDefault();
             e.stopPropagation();
