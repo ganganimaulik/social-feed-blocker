@@ -6,22 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Social Feed Blocker</title>
     <link rel="stylesheet" href="./popup.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
   </head>
 
   <body style="height: 250px; width: 400px">
-    <h2>Social Feed Blocker</h2>
-
+    <h2><i class="fas fa-shield-alt"></i> Social Feed Blocker</h2>
     <!-- button for pause options -->
     <div class="pause-buttons">
-      <button id="pause-5-min">Pause for 5 mins</button>
-      <button id="pause-10-min">Pause for 10 mins</button>
-      <button id="pause-20-min">Pause for 20 mins</button>
+      <button id="pause-5-min">Pause for<br />5 mins</button>
+      <button id="pause-10-min">Pause for<br />10 mins</button>
+      <button id="pause-20-min">Pause for<br />20 mins</button>
     </div>
 
     <!-- time remaining -->
     <div id="time-remaining-section">
       <h2>Time Remaining</h2>
-    <p id="time-remaining"></p>
+      <p id="time-remaining"></p>
     </div>
 
     <!-- display each config element along with their domain and each selectors as checkbox -->
