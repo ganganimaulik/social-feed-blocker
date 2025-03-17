@@ -8,6 +8,22 @@ chrome.runtime.onInstalled.addListener(function (details) {
   initConfig();
 });
 
+// redirect to subscriptions page for youtube
+chrome.webNavigation.onBeforeNavigate.addListener(function (details) {
+  // Only redirect the main YouTube homepage
+  if (details.url === "https://www.youtube.com/" ||
+    details.url === "https://youtube.com/") {
+    chrome.tabs.update(details.tabId, {
+      url: "https://www.youtube.com/feed/subscriptions"
+    });
+  }
+}, {
+  url: [{
+    hostContains: "youtube.com",
+    pathEquals: "/"
+  }]
+});
+
 const devLocalConfigTxt = true;
 
 function initConfig() {
