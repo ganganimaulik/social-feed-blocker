@@ -34,8 +34,9 @@
       "run_at": "document_start",
 
       "js": ["blocker.js"]
-    }, {
-      "matches": ["*://*.youtube.com/*"],
+    },
+    {
+      "matches": ["*://www.youtube.com/*"],
       "js": ["youtube-redirect.js"]
     }
   ]
