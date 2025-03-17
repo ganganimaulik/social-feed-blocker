@@ -9,8 +9,7 @@ chrome.runtime.onInstalled.addListener(function (details) {
 });
 
 // redirect to subscriptions page for youtube
-chrome.webNavigation.onBeforeNavigate.addListener(function (details) {
-  // Only redirect the main YouTube homepage
+chrome.webNavigation.onCompleted.addListener(function (details) {
   if (details.url === "https://www.youtube.com/" ||
     details.url === "https://youtube.com/") {
     chrome.tabs.update(details.tabId, {
@@ -23,6 +22,7 @@ chrome.webNavigation.onBeforeNavigate.addListener(function (details) {
     pathEquals: "/"
   }]
 });
+
 
 const devLocalConfigTxt = true;
 
@@ -78,7 +78,7 @@ function initConfig() {
         }
         console.log("config", config);
         // Store the latest config in the local storage.
-        chrome.storage.local.set({ config }, () => {});
+        chrome.storage.local.set({ config }, () => { });
       })
       .catch((err) => console.log(err));
   });
