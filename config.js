@@ -7,7 +7,9 @@ const config = [
     domain: "facebook.com",
     selectors: [
       { name: "home page feed", selector: ".x1hc1fzr.x1unhpq9.x6o7n8i" },
-      { name: "groups feed", selector: 'div[role="feed"]' },
+      {
+        name: "groups feed", selector: '[data-pagelet="GroupFeed"] div[role="feed"], [data-pagelet*="GroupsFeed_"]'
+      },
       { name: "stories", selector: '[aria-label="Stories"]' },
       { name: "reels", selector: 'div[aria-label="Reels tray"]' },
       {

@@ -14,7 +14,7 @@ function removeFeed(website) {
 
   if (!selectors.length) return;
 
-  if (["linkedin", "twitter"].includes(website.name)) {
+  if (["linkedin", "twitter", "facebook"].includes(website.name)) {
     styleEl.innerHTML = `${selectors} { visibility:hidden!important; }`;
   } else {
     styleEl.innerHTML = `${selectors} { display: none !important; }`;
