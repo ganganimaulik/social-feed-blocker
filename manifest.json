@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Social Feeds Blocker",
   "description": "Block your social media feeds and get back to work.",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "permissions": ["storage", "webNavigation", "scripting"],
   "icons": {
     "16": "assets/icons/png/16x16.png",
