@@ -162,3 +162,46 @@ h2 {
 ::-webkit-scrollbar-thumb:hover {
   background: #95a5a6;
 }
+
+/* Header Container */
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.header-container h2 {
+  margin: 0;
+  border-bottom: 2px solid #3498db;
+  padding-bottom: 8px;
+}
+
+/* Donate Link */
+.donate-link {
+  text-decoration: none;
+  background: linear-gradient(145deg, #3498db, #2980b9);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(52, 152, 219, 0.2);
+  display: inline-flex;
+  align-items: center;
+}
+
+.donate-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 3px 6px rgba(52, 152, 219, 0.3);
+}
+
+.donate-link:active {
+  transform: translateY(1px);
+  box-shadow: 0 1px 3px rgba(52, 152, 219, 0.3);
+}
+
+.donate-link i {
+  margin-right: 4px;
+}
