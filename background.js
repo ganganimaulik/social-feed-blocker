@@ -24,7 +24,7 @@ chrome.webNavigation.onCompleted.addListener(function (details) {
 });
 
 
-const devLocalConfigTxt = true;
+const devLocalConfigTxt = true; // set to true for local config.txt file
 
 function initConfig() {
   chrome.storage.local.get((store) => {

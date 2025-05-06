@@ -9,7 +9,7 @@ function removeFeed(website) {
   const styleEl = document.createElement("style");
   styleEl.id = "feed-blocker";
   const selectors = website.selectors
-    .filter((s) => s.selected)
+    .filter((s) => s.selected && s.selector !== null)
     .map((s) => s.selector);
 
   if (!selectors.length) return;

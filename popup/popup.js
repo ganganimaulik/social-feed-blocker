@@ -1,3 +1,44 @@
+// Function to reload the active tab if its URL matches the domain of the config
+function reloadActiveTabIfDomainMatches(domain) {
+  chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+    if (tabs.length > 0) {
+      const activeTab = tabs[0];
+      const activeTabUrl = new URL(activeTab.url);
+
+      // Check if the active tab's hostname matches the domain
+      if (activeTabUrl.hostname.includes(domain)) {
+        chrome.tabs.reload(activeTab.id);
+      }
+    }
+  });
+}
+
+// Function to reload the active tab if its URL matches a supported domain
+function reloadActiveTabIfSupportedDomain() {
+  chrome.storage.local.get("config", ({ config }) => {
+    if (!config || config.length === 0) {
+      console.warn("Config not loaded yet. Skipping tab reload.");
+      return;
+    }
+    // Get the active tab
+    chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+      if (tabs.length > 0) {
+        const activeTab = tabs[0];
+        const activeTabUrl = new URL(activeTab.url);
+
+        // Check if the active tab's hostname matches any domain in the config
+        const isSupportedDomain = config.some((site) =>
+          activeTabUrl.hostname.includes(site.domain)
+        );
+
+        if (isSupportedDomain) {
+          chrome.tabs.reload(activeTab.id);
+        }
+      }
+    });
+  });
+}
+
 // get chrome extension storage
 chrome.storage.local.get((store) => {
   // display the config in the popup with pretty print
@@ -81,7 +122,10 @@ chrome.storage.local.get((store) => {
           return selector;
         }
       );
-      chrome.storage.local.set({ config });
+      chrome.storage.local.set({ config }, () => {
+        // Reload the active tab if its domain matches the updated config
+        reloadActiveTabIfDomainMatches(config[configIndex].domain);
+      });
     });
   }
 
@@ -118,7 +162,10 @@ chrome.storage.local.get((store) => {
       config[configIndex].selected = oneChecked;
       config[configIndex].selectors[selectorIndex].selected =
         event.target.checked;
-      chrome.storage.local.set({ config });
+      chrome.storage.local.set({ config }, () => {
+        // Reload the active tab if its domain matches the updated config
+        reloadActiveTabIfDomainMatches(config[configIndex].domain);
+      });
     });
   }
 });
@@ -133,9 +180,12 @@ function handlePauseClick(pauseTime) {
 
   // Display the time remaining
   displayTimeRemaining(pausedTill);
+
+  // refresh the active tab
+  reloadActiveTabIfSupportedDomain();
 }
 
-const timeRemainingSection = document.getElementById('time-remaining-section')
+const timeRemainingSection = document.getElementById("time-remaining-section");
 
 // Function to display the time remaining
 function displayTimeRemaining(pausedTill) {
@@ -149,16 +199,12 @@ function displayTimeRemaining(pausedTill) {
   const timeRemainingElement = document.getElementById("time-remaining");
 
   if (remainingTime > 0) {
-    timeRemainingSection.style.removeProperty('display')
+    timeRemainingSection.style.removeProperty("display");
     // timeRemainingSection.style.flexDirection = 'column'
     timeRemainingElement.textContent = `${minutes}m ${seconds}s remaining`;
-  } 
-  else {
-    timeRemainingSection.style.display = 'none'
+  } else {
+    timeRemainingSection.style.display = "none";
   }
-  // else {
-  //   timeRemainingElement.textContent = "Pause time has expired";
-  // }
 }
 
 //this method gets called only when page is reloaded

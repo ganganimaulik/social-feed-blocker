@@ -88,6 +88,10 @@ const config = [
         name: "hide reels in search results",
         selector: "ytd-reel-shelf-renderer",
       },
+      {
+        name: "redirect home to subscriptions",
+        selector: null
+      }
     ],
   },
   {
