@@ -26,18 +26,20 @@ function reloadActiveTabIfSupportedDomain() {
         const activeTab = tabs[0];
         const activeTabUrl = new URL(activeTab.url);
 
-        // Check if the active tab's hostname matches any domain in the config
-        const isSupportedDomain = config.some((site) =>
+        // Find the matching site configuration
+        const matchingSite = config.find((site) =>
           activeTabUrl.hostname.includes(site.domain)
         );
 
-        if (isSupportedDomain) {
+        // Only reload if the site is found AND blocking is enabled for it
+        if (matchingSite && matchingSite.selected) {
           chrome.tabs.reload(activeTab.id);
         }
       }
     });
   });
 }
+
 
 // get chrome extension storage
 chrome.storage.local.get((store) => {

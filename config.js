@@ -59,7 +59,7 @@ const config = [
   {
     name: "instagram",
     domain: "instagram.com",
-    selectors: [{ name: "All Feeds", selector: `main[role="main"]` }],
+    selectors: [{ name: "All Feeds", selector: `.x1qjc9v5.x78zum5.x1q0g3np.xl56j7k.xh8yej3` }],
   },
   {
     name: "reddit",
@@ -78,7 +78,7 @@ const config = [
       {
         name: "home page feed",
         selector:
-          '#page-manager>:not(ytd-search, [page-subtype="channels"], [page-subtype="history"], [page-subtype="subscriptions"], [page-subtype="playlist"]) #contents',
+          '#page-manager>:not(ytd-search, [page-subtype="channels"], [page-subtype="history"], [page-subtype="subscriptions"], [page-subtype="playlist"], ytd-watch-flexy) #contents, ytd-item-section-renderer',
       },
       { name: "home page category chips", selector: "#chips" },
       { name: "home page hero image", selector: "#big-yoodle" },
