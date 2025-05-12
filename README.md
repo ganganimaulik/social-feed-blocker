@@ -2,4 +2,4 @@
 
 chrome extension to block social media feeds and focus on work.
 
-<img width="640" alt="Screenshot 2023-06-25 at 12 24 55 AM" src="https://github.com/ganganimaulik/social-feed-blocker/assets/10296400/44bafeba-ea7c-4292-b7c5-d43519b436fa">
+![1](https://github.com/user-attachments/assets/9db7f836-bdae-4eea-b4af-7a2586371a2a)
