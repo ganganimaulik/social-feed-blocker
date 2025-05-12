@@ -56,10 +56,9 @@ function initConfig() {
                 }
                 return {
                   ...s,
-                  selected: true,
+                  selected: !(s?.default === false),
                 };
               });
-              console.log("selectors", selectors);
               c.selected = storeConfig.selected;
               return {
                 ...c,

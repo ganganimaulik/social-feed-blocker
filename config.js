@@ -92,7 +92,8 @@ const config = [
       },
       {
         name: "redirect home to subscriptions",
-        selector: null
+        selector: null,
+        default: false,
       }
     ],
   },
