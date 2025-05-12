@@ -32,7 +32,7 @@ const config = [
   },
   {
     name: "twitter",
-    domain: "twitter.com",
+    domain: "x.com",
     selectors: [
       {
         name: "home page feed",

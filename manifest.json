@@ -25,7 +25,7 @@
     {
       "matches": [
         "*://*.facebook.com/*",
-        "*://*.twitter.com/*",
+        "*://*.x.com/*",
         "*://*.instagram.com/*",
         "*://*.linkedin.com/*",
         "*://*.reddit.com/*",
