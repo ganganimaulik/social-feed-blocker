@@ -8,12 +8,25 @@ chrome.runtime.onInstalled.addListener(function (details) {
   initConfig();
 });
 
-// redirect to subscriptions page for youtube
+// redirect to subscriptions page for youtube, but only if enabled in config
 chrome.webNavigation.onCompleted.addListener(function (details) {
   if (details.url === "https://www.youtube.com/" ||
     details.url === "https://youtube.com/") {
-    chrome.tabs.update(details.tabId, {
-      url: "https://www.youtube.com/feed/subscriptions"
+
+    // Check if redirection is enabled in the config
+    chrome.storage.local.get("config", ({ config }) => {
+      if (!config) return;
+
+      const youtubeConfig = config.find(site => site.domain === "youtube.com");
+      if (!youtubeConfig) return;
+
+      const redirectConfig = youtubeConfig.selectors.find(s => s.name === "redirect home to subscriptions");
+      if (redirectConfig && redirectConfig.selected) {
+        // Only redirect if the option is enabled
+        chrome.tabs.update(details.tabId, {
+          url: "https://www.youtube.com/feed/subscriptions"
+        });
+      }
     });
   }
 }, {
