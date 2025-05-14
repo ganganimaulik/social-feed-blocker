@@ -3,7 +3,7 @@
   "name": "Social Feeds Blocker",
   "description": "Block your social media feeds and get back to work.",
   "version": "0.0.9",
-  "permissions": ["storage", "webNavigation", "scripting", "tabs"],
+  "permissions": ["storage", "webNavigation", "tabs"],
   "icons": {
     "16": "assets/icons/png/16x16.png",
     "48": "assets/icons/png/48x48.png",
