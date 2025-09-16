@@ -78,7 +78,7 @@ const config = [
       {
         name: "home page feed",
         selector:
-          '#page-manager>:not(ytd-search, [page-subtype="channels"], [page-subtype="history"], [page-subtype="subscriptions"], [page-subtype="playlist"], ytd-watch-flexy) #contents, ytd-item-section-renderer',
+          '#page-manager>:not(ytd-search, [page-subtype="channels"], [page-subtype="history"], [page-subtype="subscriptions"], [page-subtype="playlist"], ytd-watch-flexy) :is(#contents, ytd-item-section-renderer)',
       },
       { name: "home page category chips", selector: "#chips" },
       { name: "home page hero image", selector: "#big-yoodle" },
