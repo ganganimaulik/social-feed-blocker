@@ -116,27 +116,27 @@ setInterval(() => {
     if (pausedTillTimestamp > 0 &&
       pausedTillTimestamp <= currentTime &&
       pausedTillTimestamp > currentTime - 1000) {
-      console.log("Timer expired in background script, reloading matching tabs");
+      // console.log("Timer expired in background script, reloading matching tabs");
 
-      // Find all tabs that match domains in the config
-      chrome.tabs.query({}, (tabs) => {
-        tabs.forEach(tab => {
-          try {
-            if (!tab.url) return;
-            const tabUrl = new URL(tab.url);
+      // // Find all tabs that match domains in the config
+      // chrome.tabs.query({}, (tabs) => {
+      //   tabs.forEach(tab => {
+      //     try {
+      //       if (!tab.url) return;
+      //       const tabUrl = new URL(tab.url);
 
-            // Check if the tab URL matches any domain in config
-            const matchingConfig = config.find(site =>
-              tabUrl.hostname.includes(site.domain));
+      //       // Check if the tab URL matches any domain in config
+      //       const matchingConfig = config.find(site =>
+      //         tabUrl.hostname.includes(site.domain));
 
-            if (matchingConfig) {
-              chrome.tabs.reload(tab.id);
-            }
-          } catch (e) {
-            console.error("Error processing tab:", e);
-          }
-        });
-      });
+      //       if (matchingConfig) {
+      //         chrome.tabs.reload(tab.id);
+      //       }
+      //     } catch (e) {
+      //       console.error("Error processing tab:", e);
+      //     }
+      //   });
+      // });
     }
   });
 }, 1000);
