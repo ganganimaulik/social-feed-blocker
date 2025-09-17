@@ -103,7 +103,7 @@ const config = [
     selectors: [
       {
         name: "home page feed",
-        selector: ".scaffold-finite-scroll__content>:not(.nt-card-list) *",
+        selector: "main[aria-label=\"Main Feed\"] .scaffold-finite-scroll__content",
       },
       { name: 'home "LinkedIn News"', selector: "#feed-news-module" },
       {
