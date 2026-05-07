@@ -224,6 +224,16 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  const unpauseBtn = document.getElementById("unpause-btn");
+  if (unpauseBtn) {
+    unpauseBtn.addEventListener("click", () => {
+      // Clear pausedTill
+      chrome.storage.local.set({ pausedTill: 0 });
+      displayTimeRemaining(new Date(0));
+      reloadActiveTabIfSupportedDomain();
+    });
+  }
+
   // Retrieve the stored pausedTill timestamp from storage and display time remaining when page reloaded
   chrome.storage.local.get("pausedTill", ({ pausedTill }) => {
     if (pausedTill) {

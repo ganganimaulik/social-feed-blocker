@@ -60,6 +60,33 @@ h2 {
   padding: 10px 15px;
   margin-bottom: 20px;
   border-left: 4px solid #3498db;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Start/Unpause Button Styling */
+.start-btn {
+  padding: 8px 14px;
+  font-size: 13px;
+  border: none;
+  border-radius: 6px;
+  background: linear-gradient(145deg, #27ae60, #2ecc71);
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 3px 6px rgba(46, 204, 113, 0.2);
+  font-weight: 500;
+}
+
+.start-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(46, 204, 113, 0.3);
+}
+
+.start-btn:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 4px rgba(46, 204, 113, 0.3);
 }
 
 #time-remaining-section h2 {
