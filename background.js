@@ -14,7 +14,13 @@ chrome.webNavigation.onCompleted.addListener(function (details) {
     details.url === "https://youtube.com/") {
 
     // Check if redirection is enabled in the config
-    chrome.storage.local.get("config", ({ config }) => {
+    chrome.storage.local.get(["config", "pausedTill"], ({ config, pausedTill }) => {
+      const currentTimestamp = new Date().getTime();
+      if (pausedTill && pausedTill > currentTimestamp) {
+        // Blocker is paused, do not redirect
+        return;
+      }
+
       if (!config) return;
 
       const youtubeConfig = config.find(site => site.domain === "youtube.com");
