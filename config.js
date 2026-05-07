@@ -11,21 +11,12 @@ const config = [
         name: "groups feed", selector: '[data-pagelet="GroupFeed"] div[role="feed"], [data-pagelet*="GroupsFeed_"]'
       },
       { name: "stories", selector: '[aria-label="Stories"]' },
-      { name: "reels", selector: 'div[aria-label="Reels tray"]' },
-      {
-        name: "stories & reels",
-        selector: ".x78zum5.x1q0g3np.xl56j7k.x1yztbdb.x1y1aw1k",
-      },
-      { name: "watch feed", selector: "#watch_feed" },
-      {
-        name: "watch feed 2",
-        selector: 'div[aria-label="Videos on Facebook Watch"]',
-      },
+      { name: "reels", selector: '[aria-label="Reels tray"], [aria-label="Reels"]' },
+      { name: "stories & reels", selector: ".x78zum5.x1q0g3np.xl56j7k.x1yztbdb.x1y1aw1k" },
+      { name: "watch feed", selector: "#watch_feed, div[role='main'] video" },
+      { name: "watch feed 2", selector: 'div[aria-label="Videos on Facebook Watch"]' },
       { name: "video player of reels and watch", selector: "video" },
-      {
-        name: "Marketplace",
-        selector: 'div[aria-label="Collection of Marketplace items"]',
-      },
+      { name: "Marketplace", selector: 'div[aria-label="Collection of Marketplace items"], div[aria-label*="Marketplace"]' },
       { name: "groups", selector: 'div[aria-label="Preview of a group"]' },
       { name: "notifications", selector: 'div[aria-label="Notifications"]' },
     ],
@@ -59,16 +50,16 @@ const config = [
   {
     name: "instagram",
     domain: "instagram.com",
-    selectors: [{ name: "All Feeds", selector: `.x1qjc9v5.x78zum5.x1q0g3np.xl56j7k.xh8yej3` }],
+    selectors: [{ name: "All Feeds", selector: `main article` }],
   },
   {
     name: "reddit",
     domain: "reddit.com",
     selectors: [
-      { name: "removes all feeds", selector: ".rpBJOHq2PR60pnwJlUyP0" },
-      { name: "sidebar", selector: "div[data-testid='frontpage-sidebar']" },
-      { name: 'top "Trending today"', selector: "#TrendingPostsContainer" },
-      { name: "post loading animation", selector: ".FohHGMokxXLkon1aacMoi" },
+      { name: "removes all feeds", selector: "shreddit-feed" },
+      { name: "sidebar", selector: "aside" },
+      { name: 'top "Trending today"', selector: "faceplate-carousel" },
+      { name: "post loading animation", selector: "shreddit-feed-page-loading, shreddit-async-loader" },
     ],
   },
   {
