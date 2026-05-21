@@ -38,6 +38,14 @@
     {
       "matches": ["*://www.youtube.com/*"],
       "js": ["youtube-redirect.js"]
+    },
+    {
+      "matches": [
+        "*://*.x.com/*",
+        "*://*.twitter.com/*"
+      ],
+      "js": ["x-redirect.js"],
+      "run_at": "document_start"
     }
   ]
 }

@@ -45,6 +45,11 @@ const config = [
         name: "who to follow widget",
         selector: 'aside[aria-label="Who to follow"]',
       },
+      {
+        name: "redirect home to following",
+        selector: null,
+        default: false,
+      },
     ],
   },
   {
