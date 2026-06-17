@@ -99,7 +99,7 @@ const config = [
     selectors: [
       {
         name: "home page feed",
-        selector: "main[aria-label=\"Main Feed\"] .scaffold-finite-scroll__content",
+        selector: "main[aria-label=\"Main Feed\"] .scaffold-finite-scroll__content, [data-testid=\"mainFeed\"] [style=\"display: contents;\"] > div ~ div, [data-testid=\"mainFeed\"] > div > div ~ div, [data-testid=\"mainFeed\"] [role=\"listitem\"]",
       },
       { name: 'home "LinkedIn News"', selector: "#feed-news-module" },
       {
